@@ -1,7 +1,7 @@
 function Art(props) {
     return (
 
-        <div>
+        <div className="imgFlex">
             <h2>{props.title}</h2>
             <img
                 src={props.imagePath}

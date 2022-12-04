@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './sass/App.scss';
 import Art from './Art.js';
 import FormUserInput from './FormUserInput.js';
 
@@ -52,16 +52,18 @@ function App() {
         userInput={userInput}
         searchArt={searchArt}
       />
-      {art.map((artwork) => {
-        return (
-          <Art
-            key={artwork.id}
-            alt={artwork.title}
-            title={artwork.longTitle}
-            imagePath={artwork.webImage.url}
-          />
-        );
-      })}
+      <div className="imageFlex">
+        {art.map((artwork) => {
+          return (
+            <Art
+              key={artwork.id}
+              alt={artwork.title}
+              title={artwork.longTitle}
+              imagePath={artwork.webImage.url}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

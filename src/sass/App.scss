@@ -1,3 +1,18 @@
+h1 {
+  color: dodgerblue;
+}
+
+.imgFlex {
+  width: 40%;
+}
+
+.imageFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+
 .App {
   text-align: center;
 }
@@ -32,6 +47,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
