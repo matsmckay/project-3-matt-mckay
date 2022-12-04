@@ -2,11 +2,13 @@ import { useState } from 'react';
 import './sass/App.scss';
 import Art from './Art.js';
 import FormUserInput from './FormUserInput.js';
+import FormDropDown from './FormDropDown';
 
 
 function App() {
   // Create a lil morsle of state (using useState) to store our works of art that we are getting back from our API call. That morsle of state can be used to display the art pieces on the page
-  const [art, setArt] = useState([]);
+  const [artSearch, setArtSearch] = useState([]);
+  const [artDrop, setArtDrop] = useState([]);
   const [userInput, setUserInput] = useState("");
 
   const searchArt = async (e) => {
@@ -24,8 +26,9 @@ function App() {
 
     const res = await fetch(url);
     const data = await res.json();
-    setArt(data.artObjects);
-    console.log(data.artObjects)
+    setArtSearch(data.artObjects);
+    setArtDrop(data.artObjects);
+    console.log(data.artObjects);
   }
 
 
@@ -35,7 +38,10 @@ function App() {
 
   }
 
+  const chooseTurtle = (e, userPick) => {
+    e.preventDefault();
 
+  }
 
   // Add an empty array here to prevent the useEffect() callback function from running every time our component re-renders. We only want this effect (calling the API) to run after the INITIAL render of the 'App' component. 
   // By adding this empty array, we are telling useEffect that the effect being run here does not depend on any other values in the component ie. useEffect's cbf will once, only after the first render, and then never again
@@ -47,13 +53,31 @@ function App() {
   return (
     <div className="App">
       <h1>Let's view some priceless works of art!</h1>
+      <FormDropDown
+        handleChange={handleChange}
+        userInput={userInput}
+        searchArt={searchArt}
+      />
+      <div className="imageFlex">
+        {artDrop.map((turtleArt) => {
+          return (
+            <Art
+              key={turtleArt.id}
+              alt={turtleArt.title}
+              title={turtleArt.longTitle}
+              imagePath={turtleArt.webImage.url}
+            />
+          );
+        })}
+      </div>
+
       <FormUserInput
         handleChange={handleChange}
         userInput={userInput}
         searchArt={searchArt}
       />
       <div className="imageFlex">
-        {art.map((artwork) => {
+        {artSearch.map((artwork) => {
           return (
             <Art
               key={artwork.id}
