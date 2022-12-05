@@ -11,6 +11,7 @@ function App() {
   const [artistSearch, setArtistSearch] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [turtleInput, setTurtleInput] = useState("");
+  const [searchError, userSearchError] = useState(false);
 
   const searchArt = async (e) => {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
@@ -82,45 +83,47 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Let's view some priceless works of art!</h1>
+      <div className="wrapper">
+        <h1>Let's view some priceless works of art!</h1>
 
-      <div>
-        <FormUserInput
-          handleChange={handleChange}
-          searchArt={searchArt}
-          userInput={userInput}
-        />
-      </div>
-      <div className="imageFlex">
-        {artSearch.map((artwork) => {
-          return (
-            <Art
-              key={artwork.id}
-              alt={artwork.title}
-              title={artwork.longTitle}
-              imagePath={artwork.webImage.url}
-            />
-          );
-        })}
-      </div>
-      <div>
-        <FormDropDown
-          handleDropChange={handleDropChange}
-          turtleInput={turtleInput}
-          searchTurtle={searchTurtle}
-        />
-      </div>
-      <div className="imageFlex">
-        {artistSearch.map((turtleArt) => {
-          return (
-            <Art
-              key={turtleArt.id}
-              alt={turtleArt.title}
-              title={turtleArt.longTitle}
-              imagePath={turtleArt.webImage.url}
-            />
-          );
-        })}
+        <div >
+          <FormUserInput
+            handleChange={handleChange}
+            searchArt={searchArt}
+            userInput={userInput}
+          />
+        </div>
+        <div className="imageFlex">
+          {artSearch.map((artwork) => {
+            return (
+              <Art
+                key={artwork.id}
+                alt={artwork.title}
+                title={artwork.longTitle}
+                imagePath={artwork.webImage.url}
+              />
+            );
+          })}
+        </div>
+        <div>
+          <FormDropDown
+            handleDropChange={handleDropChange}
+            turtleInput={turtleInput}
+            searchTurtle={searchTurtle}
+          />
+        </div>
+        <div className="imageFlex">
+          {artistSearch.map((turtleArt) => {
+            return (
+              <Art
+                key={turtleArt.id}
+                alt={turtleArt.title}
+                title={turtleArt.longTitle}
+                imagePath={turtleArt.webImage.url}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ const FormDropDown = (props) => {
                 name="favTMNTArtist"
                 onChange={props.handleDropChange}
                 value={props.turtleInput}
+                required
             >
-                <option value="" selected disabled >Pick one:</option>
+                <option value="" disabled >Pick one:</option>
                 <option value="leonardo">Leonardo</option>
                 <option value="michelangelo">Michelangelo</option>
                 <option value="raphael">Raphael</option>
