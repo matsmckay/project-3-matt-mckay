@@ -2,14 +2,15 @@ import { useState } from 'react';
 import './sass/App.scss';
 import Art from './Art.js';
 import FormUserInput from './FormUserInput.js';
-import FormDropDown from './FormDropDown';
+import FormDropDown from './FormDropDown.js';
 
 
 function App() {
   // Create a lil morsle of state (using useState) to store our works of art that we are getting back from our API call. That morsle of state can be used to display the art pieces on the page
   const [artSearch, setArtSearch] = useState([]);
-  const [artDrop, setArtDrop] = useState([]);
+  const [artistSearch, setArtistSearch] = useState([]);
   const [userInput, setUserInput] = useState("");
+  const [turtleInput, setTurtleInput] = useState("");
 
   const searchArt = async (e) => {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
@@ -20,14 +21,32 @@ function App() {
       key: `LvqwJKjT`,
       format: "json",
       imgonly: true,
-      q: userInput
+      q: userInput,
 
     });
 
     const res = await fetch(url);
     const data = await res.json();
     setArtSearch(data.artObjects);
-    setArtDrop(data.artObjects);
+
+  }
+
+  const searchTurtle = async (e) => {
+    const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
+
+    e.preventDefault();
+    console.log("submitting the form");
+    url.search = new URLSearchParams({
+      key: `LvqwJKjT`,
+      format: "json",
+      imgonly: true,
+      q: turtleInput,
+
+    });
+
+    const res = await fetch(url);
+    const data = await res.json();
+    setArtistSearch(data.artObjects);
     console.log(data.artObjects);
   }
 
@@ -38,10 +57,21 @@ function App() {
 
   }
 
-  const chooseTurtle = (e, userPick) => {
-    e.preventDefault();
-
+  const handleDropChange = (e) => {
+    setTurtleInput(e.target.value);
   }
+
+
+  // const chooseTurtle = (e, userPick) => {
+  //   e.preventDefault();
+
+  //   const cloneArt = [...artSearch];
+  //   const turtleArtists = cloneArt.map((turtleArt) => {
+  //     console.log(turtleArtists)
+  //     return turtleArt === userPick;
+  //   });
+  //   setArtistSearch(turtleArtists);
+  // }
 
   // Add an empty array here to prevent the useEffect() callback function from running every time our component re-renders. We only want this effect (calling the API) to run after the INITIAL render of the 'App' component. 
   // By adding this empty array, we are telling useEffect that the effect being run here does not depend on any other values in the component ie. useEffect's cbf will once, only after the first render, and then never again
@@ -53,29 +83,14 @@ function App() {
   return (
     <div className="App">
       <h1>Let's view some priceless works of art!</h1>
-      <FormDropDown
-        handleChange={handleChange}
-        userInput={userInput}
-        searchArt={searchArt}
-      />
-      <div className="imageFlex">
-        {artDrop.map((turtleArt) => {
-          return (
-            <Art
-              key={turtleArt.id}
-              alt={turtleArt.title}
-              title={turtleArt.longTitle}
-              imagePath={turtleArt.webImage.url}
-            />
-          );
-        })}
-      </div>
 
-      <FormUserInput
-        handleChange={handleChange}
-        userInput={userInput}
-        searchArt={searchArt}
-      />
+      <div>
+        <FormUserInput
+          handleChange={handleChange}
+          searchArt={searchArt}
+          userInput={userInput}
+        />
+      </div>
       <div className="imageFlex">
         {artSearch.map((artwork) => {
           return (
@@ -88,9 +103,29 @@ function App() {
           );
         })}
       </div>
+      <div>
+        <FormDropDown
+          handleDropChange={handleDropChange}
+          turtleInput={turtleInput}
+          searchTurtle={searchTurtle}
+        />
+      </div>
+      <div className="imageFlex">
+        {artistSearch.map((turtleArt) => {
+          return (
+            <Art
+              key={turtleArt.id}
+              alt={turtleArt.title}
+              title={turtleArt.longTitle}
+              imagePath={turtleArt.webImage.url}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
+
 
 export default App;
 

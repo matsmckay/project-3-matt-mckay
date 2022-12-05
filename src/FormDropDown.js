@@ -1,16 +1,14 @@
-import { useState } from 'react';
-
 const FormDropDown = (props) => {
     return (
-        <form onSubmit={props.searchArt}>
-            <label htmlFor="favTMNTArtist">Show me photos that are:</label>
+        <form onSubmit={props.searchTurtle}>
+            <label htmlFor="favTMNTArtist">Show me photos that are from your favourtie famous turtles!  </label>
             <select
                 id="favTMNTArtist"
                 name="favTMNTArtist"
-                onChange={props.handleChange}
-                value={props.userInput}
+                onChange={props.handleDropChange}
+                value={props.turtleInput}
             >
-                <option value="" disabled>Pick one:</option>
+                <option value="" selected disabled >Pick one:</option>
                 <option value="leonardo">Leonardo</option>
                 <option value="michelangelo">Michelangelo</option>
                 <option value="raphael">Raphael</option>
