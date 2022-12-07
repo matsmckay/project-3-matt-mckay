@@ -2,14 +2,15 @@ const FormUserInput = (props) => {
     return (
         <div>
             <form onSubmit={props.searchArt}>
-                <label className="labelSearch" htmlFor="userSearch">Search for some beautiful art from the Rijks museum! </label>
-                <p>Type into the search field below!</p>
+                <label className="labelSearch" htmlFor="userSearch">Search for beautiful art from the Rijks Museum: </label>
+                <p>(Guaranteed to leave you 5% more cultured after every search! Results may vary)</p>
+                <p>Type into the search field below and then click the 'Search' button!</p>
                 <input
                     onChange={props.handleChange}
                     type="text"
                     id="userSearch"
                     value={props.userInput}
-                    placeholder={`Try "picasso" or "tiger"`}
+                    placeholder={`e.g. "picasso" or "tiger"`}
                     className="input"
                     required
                 />

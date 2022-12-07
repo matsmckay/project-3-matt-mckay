@@ -6,7 +6,6 @@ import FormDropDown from './FormDropDown.js';
 
 
 function App() {
-  // Create a lil morsle of state (using useState) to store our works of art that we are getting back from our API call. That morsle of state can be used to display the art pieces on the page
   const [artSearch, setArtSearch] = useState([]);
   const [artistSearch, setArtistSearch] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -17,7 +16,6 @@ function App() {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
 
     e.preventDefault();
-    // console.log("submitting the form");
     url.search = new URLSearchParams({
       key: `LvqwJKjT`,
       format: "json",
@@ -29,7 +27,6 @@ function App() {
       const res = await fetch(url);
       const data = await res.json();
       setArtSearch(data.artObjects);
-      console.log(data.artObjects);
       if (data.artObjects.length === 0) {
         throw new Error()
       } else {
@@ -44,24 +41,18 @@ function App() {
 
   const searchTurtle = async (e) => {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
-
     e.preventDefault();
-    console.log("submitting the form");
     url.search = new URLSearchParams({
       key: `LvqwJKjT`,
       format: "json",
       imgonly: true,
       q: turtleInput,
-
     });
 
     const res = await fetch(url);
     const data = await res.json();
     setArtistSearch(data.artObjects);
-    console.log(data.artObjects);
   }
-
-
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
@@ -70,25 +61,6 @@ function App() {
   const handleDropChange = (e) => {
     setTurtleInput(e.target.value);
   }
-
-
-  // const chooseTurtle = (e, userPick) => {
-  //   e.preventDefault();
-
-  //   const cloneArt = [...artSearch];
-  //   const turtleArtists = cloneArt.map((turtleArt) => {
-  //     console.log(turtleArtists)
-  //     return turtleArt === userPick;
-  //   });
-  //   setArtistSearch(turtleArtists);
-  // }
-
-  // Add an empty array here to prevent the useEffect() callback function from running every time our component re-renders. We only want this effect (calling the API) to run after the INITIAL render of the 'App' component. 
-  // By adding this empty array, we are telling useEffect that the effect being run here does not depend on any other values in the component ie. useEffect's cbf will once, only after the first render, and then never again
-
-  // key attritube is needed bc Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity. Otherwise you're going to get (in the console) the typical:
-  //       Warning: Each child in a list should have a unique "key" prop. 
-
 
   return (
     <div className="App">
@@ -115,7 +87,7 @@ function App() {
             );
           })}
         </div>
-        {/* {searchError === false ? null : <p>Sorry, your search "{userInput}" didn't match any of our timeless works of art. Please try a different search.</p>} */}
+        {/* END .imageFlex */}
         <div>
           <FormDropDown
             handleDropChange={handleDropChange}
@@ -135,19 +107,17 @@ function App() {
             );
           })}
         </div>
+        {/* END .imageFlex */}
 
       </div>
       {/* END .wrapper */}
     </div>
+    // END .app
   );
 }
 
 
 export default App;
-
-
-
-
 
 // CULTURE YO'SELF
 
