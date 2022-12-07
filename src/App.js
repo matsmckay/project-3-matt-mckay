@@ -11,13 +11,13 @@ function App() {
   const [artistSearch, setArtistSearch] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [turtleInput, setTurtleInput] = useState("");
-  const [searchError, userSearchError] = useState(false);
+  const [searchError, setSearchError] = useState(false);
 
   const searchArt = async (e) => {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
 
     e.preventDefault();
-    console.log("submitting the form");
+    // console.log("submitting the form");
     url.search = new URLSearchParams({
       key: `LvqwJKjT`,
       format: "json",
@@ -25,12 +25,22 @@ function App() {
       q: userInput,
 
     });
-
-    const res = await fetch(url);
-    const data = await res.json();
-    setArtSearch(data.artObjects);
-
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setArtSearch(data.artObjects);
+      console.log(data.artObjects);
+      if (data.artObjects.length === 0) {
+        throw new Error()
+      } else {
+        setSearchError(false);
+      }
+    }
+    catch (error) {
+      setSearchError(true);
+    }
   }
+
 
   const searchTurtle = async (e) => {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
@@ -55,7 +65,6 @@ function App() {
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
-
   }
 
   const handleDropChange = (e) => {
@@ -91,6 +100,7 @@ function App() {
             handleChange={handleChange}
             searchArt={searchArt}
             userInput={userInput}
+            searchError={searchError}
           />
         </div>
         <div className="imageFlex">
@@ -105,6 +115,7 @@ function App() {
             );
           })}
         </div>
+        {/* {searchError === false ? null : <p>Sorry, your search "{userInput}" didn't match any of our timeless works of art. Please try a different search.</p>} */}
         <div>
           <FormDropDown
             handleDropChange={handleDropChange}
@@ -124,7 +135,9 @@ function App() {
             );
           })}
         </div>
+
       </div>
+      {/* END .wrapper */}
     </div>
   );
 }

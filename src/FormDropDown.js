@@ -1,7 +1,8 @@
 const FormDropDown = (props) => {
     return (
         <form onSubmit={props.searchTurtle}>
-            <label htmlFor="favTMNTArtist">Show me photos that are from your favourtie famous turtles!  </label>
+            <label htmlFor="favTMNTArtist">Search for art from everyone's favourite famous ninja turtles!  </label>
+            <p>Select from the drop down and then click 'TURTLE POWER' button:</p>
             <select
                 id="favTMNTArtist"
                 name="favTMNTArtist"
