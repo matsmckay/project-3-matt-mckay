@@ -27,6 +27,7 @@ function App() {
     try {
       const res = await fetch(url);
       const data = await res.json();
+      console.log(data);
       setArtSearch(data.artObjects);
       if (data.artObjects.length === 0) {
         throw new Error()
@@ -52,7 +53,9 @@ function App() {
 
     const res = await fetch(url);
     const data = await res.json();
+
     setArtistSearch(data.artObjects);
+
   }
 
   const handleChange = (e) => {

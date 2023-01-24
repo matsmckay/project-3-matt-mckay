@@ -1,13 +1,13 @@
-const FormDropDown = (props) => {
+const FormDropDown = ({ searchTurtle, turtleInput, handleDropChange }) => {
     return (
-        <form onSubmit={props.searchTurtle}>
+        <form onSubmit={searchTurtle}>
             <label className="labelSearch" htmlFor="favTMNTArtist">Search for art from everyone's favourite famous ninja turtles!  </label>
             <p>Select from the drop down and then click 'TURTLE POWER' button:</p>
             <select
                 id="favTMNTArtist"
                 name="favTMNTArtist"
-                onChange={props.handleDropChange}
-                value={props.turtleInput}
+                onChange={handleDropChange}
+                value={turtleInput}
                 required
             >
                 <option value="" disabled >Pick one:</option>

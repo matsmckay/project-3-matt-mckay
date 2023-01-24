@@ -1,13 +1,22 @@
-function Art(props) {
+import React, { useState } from "react";
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+const Art = ({ title, imagePath, alt }) => {
+    const [showInfo, setShowInfo] = useState(false);
     return (
-        <div className="imgFlex">
-            <h2>{props.title}</h2>
-            <img
-                src={props.imagePath}
-                alt={props.alt}
-                width="25%"
-            />
-        </div>
+        <article className="imgFlex">
+            <div className="artInfo">
+                <button onClick={() => setShowInfo(!showInfo)} className="btn" >{showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                </button>
+                {
+                    showInfo && <h2>{title}</h2>
+                }
+                <img
+                    src={imagePath}
+                    alt={alt}
+                    width="25%"
+                />
+            </div>
+        </article>
     )
 }
 
