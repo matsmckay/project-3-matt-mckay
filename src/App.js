@@ -21,7 +21,7 @@ function App() {
       key: `C1So9sXo`,
       format: "json",
       imgonly: true,
-      // culture: "en",
+
       q: userInput,
 
     });
@@ -46,7 +46,7 @@ function App() {
     const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
     e.preventDefault();
     url.search = new URLSearchParams({
-      key: `LvqwJKjT`,
+      key: `C1So9sXo`,
       format: "json",
       imgonly: true,
       q: turtleInput,
@@ -71,47 +71,51 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <h1>Let's view some priceless works of art!</h1>
-
-        <div >
-          <FormUserInput
-            handleChange={handleChange}
-            searchArt={searchArt}
-            userInput={userInput}
-            searchError={searchError}
-          />
-        </div>
-        <div className="imageFlex">
-          {artSearch.map((artwork) => {
-            return (
-              <Art
-                key={artwork.id}
-                alt={artwork.title}
-                title={artwork.longTitle}
-                imagePath={artwork.webImage.url}
-              />
-            );
-          })}
+        <p>(Guaranteed to leave you 5% more cultured after every search! Results may vary)</p>
+        <div className='searchContainer'>
+          <div className='inputContainer'>
+            <FormUserInput
+              handleChange={handleChange}
+              searchArt={searchArt}
+              userInput={userInput}
+              searchError={searchError}
+            />
+            
+            <div className="imageFlex">
+              {artSearch.map((artwork) => {
+                return (
+                  <Art
+                    key={artwork.id}
+                    alt={artwork.title}
+                    title={artwork.longTitle}
+                    imagePath={artwork.webImage.url}
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div className='dropDownContainer'>
+            <FormDropDown
+              handleDropChange={handleDropChange}
+              turtleInput={turtleInput}
+              searchTurtle={searchTurtle}
+            />
+            <div className="imageFlex">
+              {artistSearch.map((turtleArt) => {
+                return (
+                  <Art
+                    key={turtleArt.id}
+                    alt={turtleArt.title}
+                    title={turtleArt.longTitle}
+                    imagePath={turtleArt.webImage.url}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
         {/* END .imageFlex */}
-        <div>
-          <FormDropDown
-            handleDropChange={handleDropChange}
-            turtleInput={turtleInput}
-            searchTurtle={searchTurtle}
-          />
-        </div>
-        <div className="imageFlex">
-          {artistSearch.map((turtleArt) => {
-            return (
-              <Art
-                key={turtleArt.id}
-                alt={turtleArt.title}
-                title={turtleArt.longTitle}
-                imagePath={turtleArt.webImage.url}
-              />
-            );
-          })}
-        </div>
+       
         {/* END .imageFlex */}
 
       </div>

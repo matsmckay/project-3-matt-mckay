@@ -3,14 +3,13 @@ const FormUserInput = ({ searchArt, handleChange, userInput, searchError }) => {
         <div>
             <form onSubmit={searchArt}>
                 <label className="labelSearch" htmlFor="userSearch">Search for beautiful art from the Rijks Museum: </label>
-                <p>(Guaranteed to leave you 5% more cultured after every search! Results may vary)</p>
                 <p>Type into the search field below and then click the 'Search' button!</p>
                 <input
                     onChange={handleChange}
                     type="text"
                     id="userSearch"
                     value={userInput}
-                    placeholder={`e.g. "picasso" or "tiger"`}
+                    placeholder={`e.g. "picasso"`}
                     className="input"
                     required
                 />
