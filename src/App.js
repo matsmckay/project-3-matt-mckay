@@ -18,9 +18,10 @@ function App() {
 
     e.preventDefault();
     url.search = new URLSearchParams({
-      key: `LvqwJKjT`,
+      key: `C1So9sXo`,
       format: "json",
       imgonly: true,
+      // culture: "en",
       q: userInput,
 
     });
