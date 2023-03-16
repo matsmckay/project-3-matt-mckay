@@ -5,7 +5,7 @@ const FormDropDown = ({ searchTurtle, turtleInput, handleDropChange }) => {
             <p>Select from the drop down and then click 'TURTLE POWER' button:</p>
             <select
                 id="favTMNTArtist"
-                class="input"
+                className="input"
                 name="favTMNTArtist"
                 onChange={handleDropChange}
                 value={turtleInput}
