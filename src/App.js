@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import './sass/App.scss';
 import Art from './Art.js';
-import FormUserInput from './FormUserInput.js';
 import FormDropDown from './FormDropDown.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -13,39 +12,13 @@ import Navbar from './components/Navbar'
 
 
 function App() {
-  const [artSearch, setArtSearch] = useState([]);
+  
   const [artistSearch, setArtistSearch] = useState([]);
-  const [userInput, setUserInput] = useState("");
+  
   const [turtleInput, setTurtleInput] = useState("");
-  const [searchError, setSearchError] = useState(false);
+  
 
-  const searchArt = async (e) => {
-    const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
-
-    e.preventDefault();
-    url.search = new URLSearchParams({
-      key: `C1So9sXo`,
-      format: "json",
-      imgonly: true,
-
-      q: userInput,
-
-    });
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(data);
-      setArtSearch(data.artObjects);
-      if (data.artObjects.length === 0) {
-        throw new Error()
-      } else {
-        setSearchError(false);
-      }
-    }
-    catch (error) {
-      setSearchError(true);
-    }
-  }
+  
 
 
   const searchTurtle = async (e) => {
@@ -57,16 +30,9 @@ function App() {
       imgonly: true,
       q: turtleInput,
     });
-
     const res = await fetch(url);
     const data = await res.json();
-
     setArtistSearch(data.artObjects);
-
-  }
-
-  const handleChange = (e) => {
-    setUserInput(e.target.value);
   }
 
   const handleDropChange = (e) => {
@@ -91,25 +57,14 @@ function App() {
     
         <div className='searchContainer'>
           <div className='inputContainer'>
-            <FormUserInput
+            {/* <FormUserInput
               handleChange={handleChange}
               searchArt={searchArt}
               userInput={userInput}
               searchError={searchError}
-            />
+            /> */}
             
-            <div className="imageFlex">
-              {artSearch.map((artwork) => {
-                return (
-                  <Art
-                    key={artwork.id}
-                    alt={artwork.title}
-                    title={artwork.longTitle}
-                    imagePath={artwork.webImage.url}
-                  />
-                );
-              })}
-            </div>
+            
           </div>
           <div className='dropDownContainer'>
             <FormDropDown
