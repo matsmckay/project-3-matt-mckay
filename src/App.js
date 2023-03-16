@@ -4,6 +4,12 @@ import './sass/App.scss';
 import Art from './Art.js';
 import FormUserInput from './FormUserInput.js';
 import FormDropDown from './FormDropDown.js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import SingleArtPiece from './pages/SingleArtPiece';
+import Error from './pages/Error';
+import Navbar from './components/Navbar'
 
 
 function App() {
@@ -68,10 +74,21 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="wrapper">
-        <h1>Let's view some priceless works of art!</h1>
-        <p>(Guaranteed to leave you 5% more cultured after every search! Results may vary)</p>
+  <>
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes >
+          <Route path="/" element={<Home/>} />
+          <Route path="/about" element={<About/>}/>
+          <Route path="//art:id" element={<SingleArtPiece/>}/>        
+          <Route path="*" element={<Error/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+
+
+    
         <div className='searchContainer'>
           <div className='inputContainer'>
             <FormUserInput
@@ -118,10 +135,8 @@ function App() {
        
         {/* END .imageFlex */}
 
-      </div>
-      {/* END .wrapper */}
-    </div>
-    // END .app
+      
+    </>
   );
 }
 
