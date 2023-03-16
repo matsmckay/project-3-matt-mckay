@@ -345,7 +345,7 @@ p {
 
 button {
   margin: 10px 0 25px 0;
-  width: 75%;
+  width: 25%;
   border-radius: 15px;
   background-color: #1D798A;
   color: white;
@@ -379,11 +379,18 @@ button {
   .imgFlex {
     width: 90%;
   }
+  button {
+    width: 40%
+  }
 }
 
 @media (max-width: 516px) {
   form {
     width: 85%;
+  }
+
+  button {
+    width: 75%;
   }
   
   h1 {
