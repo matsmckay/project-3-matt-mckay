@@ -1,4 +1,6 @@
 import React from 'react';
+import ArtPiece from './ArtPiece';
+import { useState } from 'react';
 
 const FormUserInput = () => {
     
@@ -58,7 +60,7 @@ const FormUserInput = () => {
             <div className="imageFlex">
               {artSearch.map((artwork) => {
                 return (
-                  <Art
+                  <ArtPiece
                     key={artwork.id}
                     alt={artwork.title}
                     title={artwork.longTitle}

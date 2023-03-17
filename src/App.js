@@ -1,8 +1,5 @@
-
-import { useState } from 'react';
+import React from 'react';
 import './sass/App.scss';
-import Art from './Art.js';
-import FormDropDown from './FormDropDown.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -12,51 +9,25 @@ import Navbar from './components/Navbar'
 
 
 function App() {
-  
-  const [artistSearch, setArtistSearch] = useState([]);
-  
-  const [turtleInput, setTurtleInput] = useState("");
-  
-
-  
-
-
-  const searchTurtle = async (e) => {
-    const url = new URL(`https://www.rijksmuseum.nl/api/en/collection`);
-    e.preventDefault();
-    url.search = new URLSearchParams({
-      key: `C1So9sXo`,
-      format: "json",
-      imgonly: true,
-      q: turtleInput,
-    });
-    const res = await fetch(url);
-    const data = await res.json();
-    setArtistSearch(data.artObjects);
-  }
-
-  const handleDropChange = (e) => {
-    setTurtleInput(e.target.value);
-  }
-
   return (
-  <>
     <div>
       <BrowserRouter>
         <Navbar />
         <Routes >
           <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About/>}/>
-          <Route path="//art:id" element={<SingleArtPiece/>}/>        
+          <Route path="/art/:id" element={<SingleArtPiece/>}/>        
           <Route path="*" element={<Error/>}/>
         </Routes>
       </BrowserRouter>
     </div>
+  )
+}
 
-
+export default App;
     
-        <div className='searchContainer'>
-          <div className='inputContainer'>
+        {/* <div className='searchContainer'>
+          <div className='inputContainer'> */}
             {/* <FormUserInput
               handleChange={handleChange}
               searchArt={searchArt}
@@ -65,38 +36,19 @@ function App() {
             /> */}
             
             
-          </div>
+          {/* </div>
           <div className='dropDownContainer'>
             <FormDropDown
               handleDropChange={handleDropChange}
               turtleInput={turtleInput}
               searchTurtle={searchTurtle}
             />
-            <div className="imageFlex">
-              {artistSearch.map((turtleArt) => {
-                return (
-                  <Art
-                    key={turtleArt.id}
-                    alt={turtleArt.title}
-                    title={turtleArt.longTitle}
-                    imagePath={turtleArt.webImage.url}
-                  />
-                );
-              })}
-            </div>
+            
           </div>
-        </div>
+        </div> */}
         {/* END .imageFlex */}
        
         {/* END .imageFlex */}
-
-      
-    </>
-  );
-}
-
-
-export default App;
 
 // CULTURE YO'SELF
 
