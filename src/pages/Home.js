@@ -5,11 +5,11 @@ import DropDownForm from '../components/DropDownForm'
 
 const Home = () => {
     return (
-        <main>
+        <div>
             <SearchForm />
             <DropDownForm />
             <ArtList />
-        </main>
+        </div>
     )
 }
 

@@ -26,30 +26,6 @@ function App() {
 
 export default App;
     
-        {/* <div className='searchContainer'>
-          <div className='inputContainer'> */}
-            {/* <FormUserInput
-              handleChange={handleChange}
-              searchArt={searchArt}
-              userInput={userInput}
-              searchError={searchError}
-            /> */}
-            
-            
-          {/* </div>
-          <div className='dropDownContainer'>
-            <FormDropDown
-              handleDropChange={handleDropChange}
-              turtleInput={turtleInput}
-              searchTurtle={searchTurtle}
-            />
-            
-          </div>
-        </div> */}
-        {/* END .imageFlex */}
-       
-        {/* END .imageFlex */}
-
 // CULTURE YO'SELF
 
 // A landing page with the app heading: "Priceless works of art, only a few clickity-clicks away!" and a very polite welcome message: "Guaranteed to leave you 15% more cultured than before (results may vary)."
