@@ -1,6 +1,6 @@
 import React from 'react';
 import './sass/App.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import SingleArtPiece from './pages/SingleArtPiece';
@@ -11,7 +11,7 @@ import Navbar from './components/Navbar'
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      
         <Navbar />
         <Routes >
           <Route path="/" element={<Home/>} />
@@ -19,7 +19,7 @@ function App() {
           <Route path="/art/:id" element={<SingleArtPiece/>}/>        
           <Route path="*" element={<Error/>}/>
         </Routes>
-      </BrowserRouter>
+      
     </div>
   )
 }
